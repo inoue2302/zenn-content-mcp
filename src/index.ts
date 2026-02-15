@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { readArticleSchema, readArticle } from "./tools/read-article.js";
 import { listArticlesSchema, listArticles } from "./tools/list-articles.js";
+import { createArticleSchema, createArticle } from "./tools/create-article.js";
 
 const server = new McpServer({
   name: "zenn-content",
@@ -10,6 +11,7 @@ const server = new McpServer({
 
 server.tool("zenn_read_article", "指定した記事の全内容を返す", readArticleSchema, readArticle);
 server.tool("zenn_list_articles", "記事一覧を取得する", listArticlesSchema, listArticles);
+server.tool("zenn_create_article", "新しい記事を作成する", createArticleSchema, createArticle);
 
 async function main() {
   const transport = new StdioServerTransport();
